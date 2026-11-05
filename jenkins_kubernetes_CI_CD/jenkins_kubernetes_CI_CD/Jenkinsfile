@@ -10,13 +10,12 @@ pipeline {
     }
 
     stage('Deploy billing App') {
-      steps {
-        withCredentials(bindings: [
-            string(credentialsId: 'kubernetes-jenkis-server-account', variable: 'api_token')
-        ]) {
-            bat '"C:\\Users\\Diana Os\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" --token %api_token% --server https://127.0.0.1:52845 --insecure-skip-tls-verify apply -f deployment-billing-app-back-jenkins.yaml'
-          }
-        }
+  steps {
+    withCredentials(bindings: [
+        string(credentialsId: 'kubernetes-jenkis-server-account', variable: 'api_token')
+    ]) {
+        bat '"C:\\Users\\Diana Os\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\kubectl.exe" --token %api_token% --server https://127.0.0.1:52845 --insecure-skip-tls-verify apply -f jenkins_kubernetes_CI_CD/jenkins_kubernetes_CI_CD/deployment-billing-app-back-jenkins.yaml'
       }
     }
   }
+}
